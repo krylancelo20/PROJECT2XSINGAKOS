@@ -1,4 +1,7 @@
-<h1>STARTER MENJALANKAN SISTEM INDEKOS</h1>
+# SISTEM INFORMASI PENGELOLAAN INDEKOST
+Sistem informasi ini yaitu untuk memudahkan penyewa dan pemilik dalam melakukan proses pengelolaan kos-kosan yang meliputi penyewaan, pembayaran, pelaporan, dan pengajuan yang dilakukan secara online. 
+
+## Starter Menjalankan Sistem Indekost
 <ol>
 	<li>Membuka aplikasi XAMPP dan menjalankan apache dan mysql</li>
     <li>Menyalakan koneksi internet wifi</li>
@@ -9,6 +12,47 @@
     <li>menjalankan sistem dengan menuliskan perintah "php artisan serve"</li>
     <li>Membuka browser dan menuliskan alamat "127.0.0.1:8000"</li>
     <li>Selesai</li>
+</ol>
+
+## Role Sistem Indekost
+<ol>
+    <li>Admin</li>
+    - **Email : ** admin@gmail.com
+    - **Password : ** admin
+        <ul>
+            <li>Login</li>
+            <li>Mengelola Akun User</li>
+            <li>Mengelola Kosan</li>
+            <li>Mengelola Kamar</li>
+            <li>Mengelola Pengajuan</li>
+            <li>Mengelola Kategori Kosan</li>
+            <li>Melihat Penyewaan</li>
+            <li>Melihat Pembayaran</li>
+            <li>Melihat Pelaporan</li>
+        </ul>
+    <li>Pemilik</li>
+    - **Email : ** yeti@gmail.com
+    - **Password : ** yeti
+        <ul>
+            <li>Login</li>
+            <li>Registasi</li>
+            <li>Mengubah Profil</li>
+            <li>Mengajukan Kos-kosan dan Kamar</li>
+            <li>Mengelola Penyewaan</li>
+            <li>Mengelola Pembayaran</li>
+            <li>Mengelola Pelaporan</li>
+        </ul>
+    <li>Penyewa</li>
+    - **Email : ** tedi@gmail.com
+    - **Password : ** tedi
+        <ul>
+            <li>Login</li>
+            <li>Registrasi</li>
+            <li>Mengubah Profil</li>
+            <li>Melakukan Penyewaan</li>
+            <li>Melakukan Pembayaran</li>
+            <li>Melakukan Pelaporan</li>
+        </ul>
 </ol>
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
