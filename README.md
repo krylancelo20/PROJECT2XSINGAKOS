@@ -17,7 +17,11 @@ Sistem informasi ini yaitu untuk memudahkan penyewa dan pemilik dalam melakukan 
 ## Role Sistem Indekost
 <ol>
     <li>Admin</li>
+<<<<<<< HEAD
     - Email : admin@gmail.com
+=======
+    - Email : admin@gmail.com <br>
+>>>>>>> 1c589fc29ebdde7785e0eac7b02fc556fde46171
     - Password : admin
         <ul>
             <li>Login</li>
@@ -31,8 +35,13 @@ Sistem informasi ini yaitu untuk memudahkan penyewa dan pemilik dalam melakukan 
             <li>Melihat Pelaporan</li>
         </ul>
     <li>Pemilik</li>
+<<<<<<< HEAD
     - Email :  yeti@gmail.com
     - Password :  yeti
+=======
+    - Email : yeti@gmail.com <br>
+    - Password : yeti
+>>>>>>> 1c589fc29ebdde7785e0eac7b02fc556fde46171
         <ul>
             <li>Login</li>
             <li>Registasi</li>
@@ -43,8 +52,13 @@ Sistem informasi ini yaitu untuk memudahkan penyewa dan pemilik dalam melakukan 
             <li>Mengelola Pelaporan</li>
         </ul>
     <li>Penyewa</li>
+<<<<<<< HEAD
     - Email :  tedi@gmail.com
     - Password :  tedi
+=======
+    - **Email : ** tedi@gmail.com <br>
+    - **Password : ** tedi
+>>>>>>> 1c589fc29ebdde7785e0eac7b02fc556fde46171
         <ul>
             <li>Login</li>
             <li>Registrasi</li>
