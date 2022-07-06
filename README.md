@@ -43,8 +43,8 @@ Sistem informasi ini yaitu untuk memudahkan penyewa dan pemilik dalam melakukan 
             <li>Mengelola Pelaporan</li>
         </ul>
     <li>Penyewa</li>
-    - **Email : ** tedi@gmail.com <br>
-    - **Password : ** tedi
+    - Email : tedi@gmail.com <br>
+    - Password : tedi
         <ul>
             <li>Login</li>
             <li>Registrasi</li>
