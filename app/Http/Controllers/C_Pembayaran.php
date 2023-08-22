@@ -87,7 +87,8 @@ class C_Pembayaran extends Controller
         ]);
 
         if ($request->file('image')) {
-            $validatedData['image'] = $request->file('image')->store('pembayaran-images');
+            $validatedData['image'] = $request->penyewaan_id .'.'.$request->image->extension();
+            $request->image->move(public_path('foto'), $validatedData['image']);
         }
         $user = User::find($request->user_id);
         $penyewaan = Penyewaan::find($request->penyewaan_id);
@@ -179,8 +180,13 @@ class C_Pembayaran extends Controller
             ]);
         }
 
+// dd($pembayaran->penyewaan->id);
+        Penyewaan::where('id', $pembayaran->penyewaan->id)->update(['keterangan' => $request->status]);
+
+        Penyewaan::where('id', $pembayaran->penyewaan->id)->update(['no_kamar' => $request->no_kamar]);
 
         Pembayaran::where('id', $pembayaran->id)->update($validatedData);
+
 
         return redirect('/dashboard/pembayaran/')->with('success', 'Data Pembayaran berhasil diubah');
     }

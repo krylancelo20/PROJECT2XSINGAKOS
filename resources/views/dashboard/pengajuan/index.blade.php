@@ -14,8 +14,7 @@
         @if (auth()->user()->status !== 'admin')
             <div class="row my-3 d-flex justify-content-between">
                 <div class="col-lg-2">
-                    <a class="btn btn-dark" href="/dashboard/pengajuan/create"><i class="bi bi-plus-circle"></i> Tambah
-                        Data</a>
+                    <a class="btn btn-dark" href="/dashboard/pengajuan/create"><i class="bi bi-plus-circle"></i> Ajukan Kosan</a>
                 </div>
             </div>
         @endif

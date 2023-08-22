@@ -6,12 +6,12 @@
             <div class="btn-group me-2">
                 <a href="/dashboard/user/{{ $user->id }}" class="btn btn-success mx-1"><i class="bi bi-eye"></i>
                     Lihat</a>
-                <form action="/dashboard/user/{{ $user->id }}" method="post" class="d-inline">
+                {{-- <form action="/dashboard/user/{{ $user->id }}" method="post" class="d-inline">
                     @method('delete')
                     @csrf
                     <button type="submit" class="btn btn-danger mx-1" onclick="return confirm('Hapus Data?')"><i
                             class="bi bi-trash"></i> Hapus</button>
-                </form>
+                </form> --}}
             </div>
         </div>
     </div>
@@ -52,17 +52,19 @@
                     @enderror
                 </div>
                 <div class="mb-3">
+                    {{-- @if (auth()->user()->status == 'pemilik' || auth()->user()->status == 'penyewa' ) --}}
                     <label for="password" class="form-label">Password:</label>
                     <span class="border-secondary p-1 px-2 ">
                         <i class="bi bi-eye" id="btn_pw"></i>
                     </span>
                     <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
-                        name="password" required>
+                        name="password">
                     @error('password')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                     @enderror
+                    {{-- @endif --}}
                 </div>
                 <div class="mb-3">
                     <label for="status" class="form-label">Status:</label>
@@ -72,6 +74,18 @@
                         <option value="pemilik" @selected(old('status', $user->status) == 'pemilik')>Pemilik</option>
                     </select>
                     @error('status')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="ban" class="form-label">Status Akun:</label>
+                    <select class="form-select @error('ban') is-invalid @enderror" id="ban" name="ban">
+                        <option value="0" @selected(old('ban', $user->ban) == '0')>Aktif</option>
+                        <option value="1" @selected(old('ban', $user->ban) == '1')>Tidak Aktif </option>
+                    </select>
+                    @error('ban')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
@@ -89,6 +103,7 @@
                     @enderror
                 </div>
                 <div class="mb-3">
+                    @if (auth()->user()->status == 'pemilik' || auth()->user()->status == 'penyewa' )
                     <label for="norek" class="form-label">No Rekening:</label>
                     <input type="number" class="form-control @error('norek') is-invalid @enderror" id="norek" name="norek"
                         value="{{ old('norek', $user->norek) }}">
@@ -97,8 +112,10 @@
                             {{ $message }}
                         </div>
                     @enderror
+                    @endif
                 </div>
                 <div class="mb-3">
+                    @if (auth()->user()->status == 'pemilik' || auth()->user()->status == 'penyewa' )
                     <label for="jenis_rek" class="form-label">Jenis Rekening:</label>
                     <input type="text" class="form-control @error('jenis_rek') is-invalid @enderror" id="jenis_rek"
                         name="jenis_rek" value="{{ old('jenis_rek', $user->jenis_rek) }}">
@@ -107,8 +124,10 @@
                             {{ $message }}
                         </div>
                     @enderror
+                    @endif
                 </div>
                 <div class="mb-3">
+                    @if (auth()->user()->status == 'pemilik' || auth()->user()->status == 'penyewa' )
                     <label for="atas_nama" class="form-label">Atas Nama:</label>
                     <input type="text" class="form-control @error('atas_nama') is-invalid @enderror" id="atas_nama"
                         name="atas_nama" value="{{ old('atas_nama', $user->atas_nama) }}">
@@ -117,6 +136,7 @@
                             {{ $message }}
                         </div>
                     @enderror
+                    @endif
                 </div>
                 <div class="mb-3">
                     <label for="alamat" class="form-label">Alamat:</label>
@@ -130,23 +150,27 @@
             </div>
             <div class="col-lg-6">
                 <div class="mb-3">
+                    @if (auth()->user()->status == 'pemilik' || auth()->user()->status == 'penyewa' )
                     <label for="image" class="form-label">Foto Profil <small>(max: 16mb)</small></label>
                     <input type="hidden" name="oldImage" value="{{ $user->image }}">
                     <center>
                         @if ($user->image)
-                            <img src="{{ asset('/storage/' . $user->image) }}" alt="Foto Profil {{ $user->name }}"
+                            <img src="/foto/{{$user->image}}" alt="Foto Profil {{ $user->name }}"
                                 class="img-preview img-fluid w-50 my-3 d-block">
                         @else
                             <img class="img-preview img-fluid w-50 my-3">
                         @endif
                     </center>
+                    @if (auth()->user()->status == 'pemilik' || auth()->user()->status == 'penyewa' )
                     <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image"
                         onchange="previewImage()">
                     @error('image')
                         <div class="invalid-feedback">
                             {{ $message }}
+                    @endif
                         </div>
                     @enderror
+                    @endif
                 </div>
             </div>
         </div>

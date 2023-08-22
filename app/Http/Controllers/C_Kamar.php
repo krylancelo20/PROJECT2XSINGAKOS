@@ -59,7 +59,8 @@ class C_Kamar extends Controller
         ]);
 
         if ($request->file('image')) {
-            $validatedData['image'] = $request->file('image')->store('kamar-images');
+            $validatedData['image'] = $request->kost_id .'.'.$request->image->extension();
+            $request->image->move(public_path('foto'), $validatedData['image']);
         }
         $validatedData['sisa_kamar'] = $request->jumlah_kamar;
         $kost = Kost::find($request->kost_id);
@@ -142,7 +143,8 @@ class C_Kamar extends Controller
             if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
-            $validatedData['image'] = $request->file('image')->store('kamar-images');
+            $validatedData['image'] = $request->kost_id .'.'.$request->image->extension();
+            $request->image->move(public_path('foto'), $validatedData['image']);
         }
 
         if ($request->tipe != $kamar->tipe) {

@@ -1,5 +1,20 @@
 @extends('layouts.dashboard')
 @section('container')
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+
+    {{-- cdn leaflet fullscreen js dan css --}}
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
+    <style>
+        #map {
+            height: 700px;
+            width: 100%;
+        }
+    </style>
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h2>{{ $title }}</h2>
     </div>
@@ -61,7 +76,7 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="kategori_id" class="form-label">kategori:</label>
+                    <label for="kategori_id" class="form-label">Pilih Tempat Yang Dekat Dengan lokasi Kos Anda :</label>
                     <select class="form-select @error('kategori_id') is-invalid @enderror" id="kategori_id"
                         name="kategori_id">
                         @foreach ($kategori as $kt)
@@ -104,6 +119,17 @@
                         </div>
                     @enderror
                 </div>
+                <div class="col-12 col-lg-12">
+                    <div class="form-group">
+                        <label for="toko">Lokasi Kos</label>
+                        <input type="text" class="form-control" id="lokasi_toko"
+                            placeholder="Longitude, Latitude" name="lokasi_toko" >
+                        <small id="emailHelp2" class="form-text text-danger">*Pilih melalui
+                            maps, klik lokasi untuk mendapatkan longituted dan latitude</small>
+                        {{-- <small id="emailHelp2" class="form-text text-danger">*Pilih melalui map (klik Lokasi Toko)</small> --}}
+                    </div>
+                    <div class="m-2" id="map"></div>
+                </div>
             </div>
             <div class="col-lg-6">
                 <div class="mb-3">
@@ -120,6 +146,7 @@
                     @enderror
                 </div>
             </div>
+            
             <div class="d-flex justify-content-between mb-3">
                 @if (auth()->user()->status == 'admin')
                     <a href="/dashboard/kost" class="text-dark text-decoration-none">
@@ -147,4 +174,59 @@
             }
         }
     </script>
+    <script>
+        var map = L.map('map', {
+        center: [-6.571589, 107.758736],
+        zoom: 15,
+        fullscreenControl: true
+                                })
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        @foreach ( $datakategori as $key => $gis)
+                L.marker([{{ $gis->lokasi_kategori}}])
+                .bindPopup("<div style='min-width:200px'><img width='200px' src='{{ url('foto/') }}/{{ $gis->image }}' alt='toko-img' class='custom-img-map rounded'>" +
+                        "<div class='my-1'><p class='fs-5 text-capitalize fw-bold'>{{ $gis->nama }}</p></div> <div class='my-1'><p class='fs-8 text-capitalize fw-bold'>{{ $gis->alamat }}</p></div>")
+                
+                    .addTo(map);
+                    @endforeach
+        // set koordinat lokasi ke dalam curLocation yang mana nilai dari curLocation juga akan
+        // digunakan untuk menampilkan marker pada map
+        var curLocation = [-0.4922612112757657, 117.14561375238749];
+        map.attributionControl.setPrefix(false);
+
+        var marker = new L.marker(curLocation, {
+            draggable: 'true',
+        });
+        map.addLayer(marker);
+
+        // dan ketika marker tersebut di geser akan mendapatkan titik koordinat yaitu latitude  dan longitudenya
+        // lalu menambahkan titik koordinat tersebut ke dalam tag input dengan namenya location 
+        marker.on('dragend', function(event) {
+            var lokasi_toko = marker.getLatLng();
+            marker.setLatLng(lokasi_toko, {
+                draggable: 'true',
+            }).bindPopup(lokasi_toko).update();
+
+            $('#lokasi_toko').val(lokasi_toko.lat + "," + lokasi_toko.lng).keyup()
+        });
+
+        // selain itu dengan fungsi di bawah juga bisa mendapatkan nilai latitude dan longitude
+        // dengan cara klik lokasi pada map maka nilai latitude dan longitudenya juga akan
+        // langsung muncul pada input text location
+
+        var loc = document.querySelector("[name=lokasi_toko]");
+        map.on("click", function(e) {
+            var lat = e.latlng.lat;
+            var lng = e.latlng.lng;
+
+            if (!marker) {
+                marker = L.marker(e.latlng).addTo(map);
+            } else {
+                marker.setLatLng(e.latlng);
+            }
+            loc.value = lat + "," + lng;
+        });
+    </script>
+
 @endsection

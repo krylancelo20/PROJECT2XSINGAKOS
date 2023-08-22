@@ -79,12 +79,12 @@
 
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
                             <!-- Place this tag where you want the button to render. -->
-                            <li class="nav-item lh-1 me-3">
+                            {{-- <li class="nav-item lh-1 me-3">
                                 <a class="github-button"
                                     href="https://github.com/themeselection/sneat-html-admin-template-free"
                                     data-icon="octicon-star" data-size="large" data-show-count="true"
                                     aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">Star</a>
-                            </li>
+                            </li> --}}
 
                             <!-- User -->
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -92,7 +92,7 @@
                                     data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
                                         @if (auth()->user()->image)
-                                            <img src="{{ asset('/storage/' . auth()->user()->image) }}" alt
+                                            <img src="/foto/{{auth()->user()->image}}" alt
                                                 class="w-px-40 h-auto rounded-circle" />
                                         @else
                                             <img src="{{ asset('img') }}/user.png" alt
@@ -107,7 +107,7 @@
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
                                                         @if (auth()->user()->image)
-                                                            <img src="{{ asset('/storage/' . auth()->user()->image) }}"
+                                                            <img src="/foto/{{auth()->user()->image}}"
                                                                 alt class="w-px-40 h-auto rounded-circle" />
                                                         @else
                                                             <img src="{{ asset('img') }}/user.png" alt
@@ -176,9 +176,9 @@
                                 <script>
                                     document.write(new Date().getFullYear());
                                 </script>
-                                , made with ❤️ by
+                                , by
                                 <a href="https://themeselection.com" target="_blank"
-                                    class="footer-link fw-bolder">SIPI TIM</a>
+                                    class="footer-link fw-bolder">GloryCode Technology</a>
                             </div>
                             <div>
                                 <a href="https://themeselection.com/license/" class="footer-link me-4"

@@ -40,7 +40,8 @@ class C_Pengajuan extends Controller
     {
         return view('dashboard.pengajuan.create', [
             'title' => 'Mengajukan Kosan',
-            'kategori' => Kategori::all()
+            'kategori' => Kategori::all(),
+            'datakategori' => Kategori::all()
         ]);
     }
 
@@ -59,6 +60,7 @@ class C_Pengajuan extends Controller
             'jenis' => 'required',
             'kategori_id' => 'required',
             'jarak' => 'required',
+            'lokasi_toko' => 'required',
             'wc' => 'required',
             'alamat' => 'required',
             'deskripsi' => 'required',
@@ -68,7 +70,8 @@ class C_Pengajuan extends Controller
         ]);
 
         if ($request->file('image')) {
-            $validatedData['image'] = $request->file('image')->store('kost-images');
+            $validatedData['image'] = $request->nama .'.'.$request->image->extension();
+            $request->image->move(public_path('foto'), $validatedData['image']);
         }
 
         $validatedData['slug'] = $validatedData['nama'] . ' ' . rand(1000, 9999);
@@ -93,7 +96,7 @@ class C_Pengajuan extends Controller
         $harga_min = Kamar::where('kost_id', $kost->id)->min('harga');
         $harga_max = Kamar::where('kost_id', $kost->id)->max('harga');
         return view('dashboard.pengajuan.show', [
-            'title' => 'Indekos',
+            'title' => 'Singakos',
             'kost' => $kost,
             'jumlah' => $jumlah,
             'min' => $harga_min,
@@ -115,7 +118,9 @@ class C_Pengajuan extends Controller
         return view('dashboard.pengajuan.edit', [
             'title' => 'Mengubah Pengajuan',
             'kost' => $kost,
-            'kategori' => Kategori::all()
+            'kategori' => Kategori::all(),
+            'datakategori' => Kategori::all(),
+            'datakost' => Kost::where('status', 'disetujui')->get(),
         ]);
     }
 
@@ -136,6 +141,7 @@ class C_Pengajuan extends Controller
             'jenis' => 'nullable',
             'kategori_id' => 'nullable',
             'jarak' => 'nullable',
+            'lokasi_toko' => 'required',
             'wc' => 'nullable',
             'alamat' => 'nullable',
             'deskripsi' => 'nullable',
@@ -154,7 +160,8 @@ class C_Pengajuan extends Controller
             if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
-            $validatedData['image'] = $request->file('image')->store('kost-images');
+            $validatedData['image'] = $request->nama .'.'.$request->image->extension();
+            $request->image->move(public_path('foto'), $validatedData['image']);
         }
 
         if ($request->nama != $kost->nama) {

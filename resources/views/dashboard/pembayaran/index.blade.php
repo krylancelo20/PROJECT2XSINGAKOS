@@ -42,8 +42,10 @@
                             <td>
                                 {{ $pb->komentar ?? '-' }}</td>
                             <td>
-                                <a href="/dashboard/pembayaran/{{ $pb->slug }}" class="btn btn-success"><i
+                                {{-- @if (auth()->user()->status == 'pemilik' || auth()->user()->status == 'admin' ) --}}
+                                    <a href="/dashboard/pembayaran/{{ $pb->slug }}" class="btn btn-success"><i
                                         class="bx bx-info-circle"></i></a>
+                                {{-- @endif --}}
                                 {{-- <a href="/dashboard/pembayaran/{{ $pb->slug }}/edit" class="btn btn-warning"><i
                                         class="bx bx-pencil"></i></a> --}}
                             </td>

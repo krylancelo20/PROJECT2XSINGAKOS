@@ -12,7 +12,7 @@
                 <input type="hidden" class="form-control @error('penyewaan_id') is-invalid @enderror" id="penyewaan_id"
                     name="penyewaan_id" required value="{{ $penyewaan->id }}">
                 <div class="mb-3">
-                    <label for="no_transfer" class="form-label">No Transaksi:</label>
+                    <label for="no_transfer" class="form-label"> Input Nomor Transaksi Yang Sesuai Dengan Lampiran Foto :</label>
                     <input type="text" class="form-control @error('no_transfer') is-invalid @enderror" id="no_transfer"
                         name="no_transfer" required value="{{ old('no_transfer') }}">
                     @error('no_transfer')

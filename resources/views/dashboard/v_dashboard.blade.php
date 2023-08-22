@@ -6,10 +6,10 @@
                 <div class="d-flex align-items-end row">
                     <div class="col-sm-7">
                         <div class="card-body">
-                            <h5 class="card-title text-primary">Hai
+                            <h5 class="card-title text-primary">Hiii
                                 {{ auth()->user()->name }}! 🎉</h5>
                             <p class="mb-4">
-                                Selamat Datang di Dashboard Sistem Informasi Pengelolaan Indekost.
+                                Selamat Datang di Sistem Informasi Penyewaan Kos.
                                 {{-- You have done <span class="fw-bold">72%</span> more sales today.
                                 Check your new badge in
                                 your profile. --}}
@@ -85,33 +85,6 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-6 col-md-12 col-6 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="card-title d-flex align-items-start justify-content-between">
-                                <div class="avatar flex-shrink-0">
-                                    <a href="/dashboard/pelaporan">
-                                        <i class="text-warning bx bx-receipt fs-1"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <span class="fw-semibold d-block mb-1">Pelaporan</span>
-                            <h3 class="card-title mb-2">{{ $pelaporan['jumlah'] }}</h3>
-                            <div class="d-flex justify-content-between">
-                                <small class="text-success">
-                                    <i class="bx bx-up-arrow-alt"></i> {{ $pelaporan['setuju'] }}
-                                </small>
-                                <small class="text-danger">
-                                    <i class="bx bx-down-arrow-alt"></i> {{ $pelaporan['tolak'] }}
-                                </small>
-                                <small class="text-secondary">
-                                    <i class="bx bx-minus"></i> {{ $pelaporan['tunggu'] }}
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 @if (auth()->user()->status != 'penyewa')
                     <div class="col-lg-6 col-md-12 col-6 mb-4">
                         <div class="card">
@@ -195,7 +168,7 @@
                 </div>
             @endif
         </div>
-        @if (auth()->user()->status != 'penyewa')
+        @if (auth()->user()->status == 'pemilik')
             <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
                 <div class="card h-100">
                     <div class="card-header d-flex align-items-center justify-content-between pb-0">
@@ -279,9 +252,7 @@
             </div>
             <div class="col-md-6 col-lg-4 order-2 mb-4">
                 <div class="card h-100">
-                    <div class="card-header d-flex align-items-center justify-content-between">
-                        <h5 class="card-title m-0 me-2">Pelaporan</h5>
-                    </div>
+                    
                     <div class="card-body">
                         <ul class="p-0 m-0">
                             @foreach ($pelaporan['data'] as $pl)
@@ -329,15 +300,6 @@
                                     </li>
                                 @endif
                             @endforeach
-                            <li class="d-flex justify-content-center">
-                                <div class="flex-shrink-0">
-                                    <a href="/dashboard/pelaporan">
-                                        <span class="rounded bg-label-warning py-2 px-3">
-                                            Lihat Lebih Banyak Data Pelaporan
-                                        </span>
-                                    </a>
-                                </div>
-                            </li>
                         </ul>
                     </div>
                 </div>

@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col-lg-3">
             @if ($pembayaran->image)
-                <img src="{{ asset('/storage/' . $pembayaran->image) }}" alt="Foto Kamar {{ $pembayaran->tipe }}"
+                <img src="/foto/{{$pembayaran->image}}" alt="Foto Kamar {{ $pembayaran->tipe }}"
                     class="img-preview img-fluid w-100 card-img-top d-block">
             @else
                 <img class="img-preview img-fluid w-100 card-img-top">
@@ -56,10 +56,10 @@
                     <td colspan="2"><b>Komentar :</b> <br>{{ $pembayaran->komentar ?? '-' }}</td>
                 </tr>
             </table>
-            {{-- @if (auth()->user()->status == 'pemilik' && $penyewaan->status == 'menunggu') --}}
+            @if (auth()->user()->status == 'pemilik')
             <a href="/dashboard/pembayaran/{{ $pembayaran->slug }}/edit" class="btn btn-success"><i
                     class="bi bi-card-checklist"></i> Verifikasi</a>
-            {{-- @endif --}}
+            @endif
             <a href="/dashboard/penyewaan/{{ $penyewaan->slug }}" class="btn btn-dark"><i
                     class="bi bi-bookmark-check"></i> Penyewaan</a>
         </div>

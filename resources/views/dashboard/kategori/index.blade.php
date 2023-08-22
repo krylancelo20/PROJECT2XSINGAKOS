@@ -34,7 +34,7 @@
                             <td>
                                 <center>
                                     @if ($ktg->image)
-                                        <img src="{{ asset('/storage/' . $ktg->image) }}"
+                                        <img src="/foto/{{$ktg->image}}"
                                             alt="Foto Profil {{ $ktg->nama }}" class="img-preview img-fluid mb-3 d-block"
                                             width="125">
                                     @else

@@ -42,15 +42,18 @@ class C_Kategori extends Controller
      */
     public function store(Request $request)
     {
+
         $validatedData = $request->validate([
             'nama' => 'required|max:255',
             'slug' => 'nullable|unique:kategoris',
             'alamat' => 'required',
-            'image' => 'nullable|image|file|max:16384'
+            'image' => 'nullable|image|file|max:16384',
+            'lokasi_kategori' => 'required'
         ]);
 
         if ($request->file('image')) {
-            $validatedData['image'] = $request->file('image')->store('kategori-images');
+            $validatedData['image'] = $request->nama .'.'.$request->image->extension();
+            $request->image->move(public_path('foto'), $validatedData['image']);
         }
 
         $validatedData['slug'] = $validatedData['nama'] . ' ' . rand(1000, 9999);
@@ -104,7 +107,8 @@ class C_Kategori extends Controller
             'nama' => 'required|max:255',
             'slug' => 'nullable|unique:kategoris',
             'alamat' => 'required',
-            'image' => 'nullable|image|file|max:16384'
+            'image' => 'nullable|image|file|max:16384',
+            'lokasi_kategori' => 'required'
         ];
 
         $validatedData = $request->validate($rules);
@@ -113,7 +117,8 @@ class C_Kategori extends Controller
             if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
-            $validatedData['image'] = $request->file('image')->store('kamar-images');
+            $validatedData['image'] = $request->nama .'.'.$request->image->extension();
+            $request->image->move(public_path('foto'), $validatedData['image']);
         }
 
         if ($request->nama != $kategori->nama) {

@@ -7,7 +7,7 @@
         <div class="col-lg-4 mb-5">
             <div class="card">
                 @if ($kamar->image)
-                    <img src="{{ asset('/storage/' . $kamar->image) }}" alt="Foto Kamar {{ $kamar->tipe }}"
+                    <img src="/foto/{{$kamar->image}}" alt="Foto Kamar {{ $kamar->tipe }}"
                         class="img-preview img-fluid w-100 d-block card-img-top">
                 @else
                     <img class="img-preview img-fluid w-100 card-img-top">
@@ -33,7 +33,7 @@
                                 <td>Rp. {{ number_format($kamar->harga) }}</td>
                             </tr>
                             <tr>
-                                <th>Pemilik</th>
+                                <th>Pemilik</th>n  n 
                                 <td><a class="text-black" href="/kost?user={{ $kamar->kost->user->username }}">
                                         {{ $kamar->kost->user->name }}
                                     </a>

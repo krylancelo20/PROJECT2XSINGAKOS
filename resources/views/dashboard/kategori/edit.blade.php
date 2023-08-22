@@ -26,7 +26,7 @@
                         <input type="hidden" name="oldImage" value="{{ $kategori->image }}">
                         <center>
                             @if ($kategori->image)
-                                <img src="{{ asset('/storage/' . $kategori->image) }}"
+                                <img src="/foto/{{$kategori->image}}"
                                     alt="Foto Kategori {{ $kategori->nama }}"
                                     class="img-preview img-fluid w-50 my-3 d-block">
                             @else
@@ -56,6 +56,15 @@
                     <label for="alamat" class="form-label">Alamat:</label>
                     <textarea class="form-control  @error('alamat') is-invalid @enderror" name="alamat" id="alamat" cols="30" rows="2">{{ old('alamat', $kategori->alamat) }}</textarea>
                     @error('alamat')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="lokasi_kategori" class="form-label">Lokasi:</label>
+                    <textarea class="form-control  @error('lokasi_kategori') is-invalid @enderror" name="lokasi_kategori" id="lokasi_kategori" cols="30" rows="2">{{ old('lokasi_kategori', $kategori->lokasi_kategori) }}</textarea>
+                    @error('lokasi_kategori')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>

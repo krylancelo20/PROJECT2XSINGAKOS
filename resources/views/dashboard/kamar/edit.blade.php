@@ -78,7 +78,7 @@
                     <input type="hidden" name="oldImage" value="{{ $kamar->image }}">
                     <center>
                         @if ($kamar->image)
-                            <img src="{{ asset('/storage/' . $kamar->image) }}" alt="Foto Kamar {{ $kamar->name }}"
+                            <img src="/foto/{{$kamar->image}}" alt="Foto Kamar {{ $kamar->name }}"
                                 class="img-preview img-fluid w-75 my-3 d-block">
                         @else
                             <img class="img-preview img-fluid w-75 my-3">

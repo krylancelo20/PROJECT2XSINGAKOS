@@ -1,6 +1,6 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand mx-4 text-success" href="/">INDEKOS</a>
+        <a class="navbar-brand mx-4 text-success" href="/">SINGAKOS</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -15,14 +15,6 @@
                     <li class="nav-item px-4">
                         <a class="nav-link {{ Request::is('kost', 'kostan*', 'pemilik*', 'jenis*') ? 'active text-success border-bottom border-success border-3' : '' }}"
                             href="/kost">Kosan</a>
-                    </li>
-                    <li class="nav-item px-4">
-                        <a class="nav-link {{ Request::is('kategori*') ? 'active text-success border-bottom border-success border-3' : '' }}"
-                            href="/kategori">Kategori</a>
-                    </li>
-                    <li class="nav-item px-4">
-                        <a class="nav-link {{ Request::is('tentang') ? 'active text-success border-bottom border-success border-3' : '' }}"
-                            href="/tentang">Tentang</a>
                     </li>
                     <li class="nav-item dropdown px-5">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"

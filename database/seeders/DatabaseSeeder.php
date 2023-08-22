@@ -31,29 +31,29 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'tedi',
-            'username' => 'tedi',
+            'name' => 'Kevin Abhista',
+            'username' => 'Kevin',
             'status' => 'penyewa',
-            'email' => 'tedi@gmail.com',
-            'nohp' => '6282244556635',
-            'atas_nama' => 'tedi ridwansyah',
-            'jenis_rek' => 'bca',
-            'norek' => '6782348732',
-            'alamat' => 'manyingsal',
-            'password' => bcrypt('tedi'),
+            'email' => 'kevinabhista@gmail.com',
+            'nohp' => '6282118217076',
+            'atas_nama' => 'Kevin Abhista',
+            'jenis_rek' => 'BCA',
+            'norek' => '055667788',
+            'alamat' => 'Subang',
+            'password' => bcrypt('12345'),
         ]);
 
         User::create([
-            'name' => 'yeti',
-            'username' => 'yeti',
+            'name' => 'Dandi Agustian',
+            'username' => 'Dandi',
             'status' => 'pemilik',
-            'email' => 'yeti@gmail.com',
-            'nohp' => '628666777423',
-            'atas_nama' => 'yeti yeti',
-            'jenis_rek' => 'bjb',
-            'norek' => '099988231',
-            'alamat' => 'cibogo',
-            'password' => bcrypt('yeti'),
+            'email' => 'dandiagustian@gmail.com',
+            'nohp' => '628975609534',
+            'atas_nama' => 'Dandi Agustian',
+            'jenis_rek' => 'BRI',
+            'norek' => '099775546',
+            'alamat' => 'Subang',
+            'password' => bcrypt('12345'),
         ]);
 
         Kategori::create([

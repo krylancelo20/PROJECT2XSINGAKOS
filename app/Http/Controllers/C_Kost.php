@@ -38,6 +38,7 @@ class C_Kost extends Controller
         return view('dashboard.kost.create', [
             'title' => 'Tambah Kost',
             'kategori' => Kategori::all(),
+            'datakategori' => Kategori::all(),
             'users' => User::where('status', 'pemilik')->get()
         ]);
     }
@@ -57,6 +58,7 @@ class C_Kost extends Controller
             'jenis' => 'required',
             'kategori_id' => 'required',
             'jarak' => 'required',
+            'lokasi_toko' => 'required',
             'wc' => 'required',
             'alamat' => 'required',
             'deskripsi' => 'required',
@@ -65,7 +67,8 @@ class C_Kost extends Controller
         ]);
 
         if ($request->file('image')) {
-            $validatedData['image'] = $request->file('image')->store('kost-images');
+            $validatedData['image'] = $request->nama .'.'.$request->image->extension();
+            $request->image->move(public_path('foto'), $validatedData['image']);
         }
 
         $validatedData['slug'] = $validatedData['nama'] . ' ' . rand(1000, 9999);
@@ -92,7 +95,7 @@ class C_Kost extends Controller
         $harga_max = Kamar::where('kost_id', $kost->id)->max('harga');
         $penyewaan = Penyewaan::all();
         return view('dashboard.kost.show', [
-            'title' => 'Indekos',
+            'title' => 'Singakos',
             'kost' => $kost,
             'jumlah' => $jumlah,
             'min' => $harga_min,
@@ -115,7 +118,8 @@ class C_Kost extends Controller
         return view('dashboard.kost.edit', [
             'title' => 'Ubah Kost',
             'kost' => $kost,
-            'kategori' => Kategori::all()
+            'kategori' => Kategori::all(),
+            'datakategori' => Kategori::all()
         ]);
     }
 
@@ -134,6 +138,7 @@ class C_Kost extends Controller
             'jenis' => 'required',
             'kategori_id' => 'required',
             'jarak' => 'required',
+            'lokasi_toko' => 'required',
             'wc' => 'required',
             'alamat' => 'required',
             'deskripsi' => 'required',
@@ -152,7 +157,8 @@ class C_Kost extends Controller
             if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
-            $validatedData['image'] = $request->file('image')->store('kost-images');
+            $validatedData['image'] = $request->nama .'.'.$request->image->extension();
+            $request->image->move(public_path('foto'), $validatedData['image']);
         }
 
         if ($request->nama != $kost->nama) {
@@ -185,14 +191,18 @@ class C_Kost extends Controller
     {
         $kost = Kost::where('slug', $slug)->first();
         $kamar = Kamar::where('kost_id', $kost->id)->first();
-        return view('v_kostan', [
-            'title' => 'Kostan',
-            'kost' => $kost,
-            'jumlah' => Kamar::find($kamar->id)->sum('jumlah_kamar'),
-            'sisa' => Kamar::find($kamar->id)->sum('sisa_kamar'),
-            'kecil' => Kamar::find($kamar->id)->min('harga'),
-            'besar' => Kamar::find($kamar->id)->max('harga'),
-            'kamar' => Kamar::where('kost_id', $kost->id)->get()
-        ]);
+        if($kamar){
+            return view('v_kostan', [
+                'title' => 'Kostan',
+                'kost' => $kost,
+                'jumlah' => Kamar::find($kamar->id)->sum('jumlah_kamar'),
+                'sisa' => Kamar::find($kamar->id)->sum('sisa_kamar'),
+                'kecil' => Kamar::find($kamar->id)->min('harga'),
+                'besar' => Kamar::find($kamar->id)->max('harga'),
+                'kamar' => Kamar::where('kost_id', $kost->id)->get()
+            ]);
+        }else{
+            return redirect()->back()->with('Data Kamar Kosong');
+        }
     }
 }

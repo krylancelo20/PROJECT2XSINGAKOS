@@ -17,6 +17,13 @@
             </div>
         @endif
 
+        {{-- @if (session('status'))
+            <div class="alert alert-danger">{{ session('status') }}</div>
+        @endif
+
+        <form method="POST" action="{{ route('login') }}">
+        @csrf --}}
+
         <h2>{{ $title }}</h2>
         <div class="shadow">
             <form action="/login" method="post" class="p-5 border">

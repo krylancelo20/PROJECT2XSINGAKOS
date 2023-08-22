@@ -18,7 +18,7 @@
     <div class="col-lg-4">
         <div class="card">
             @if ($kategori->image)
-                <img src="{{ asset('/storage/' . $kategori->image) }}" alt="Foto kategori {{ $kategori->nama }}"
+                <img src="/foto/{{$kategori->image}}" alt="Foto kategori {{ $kategori->nama }}"
                     class="img-preview img-fluid w-100 d-block card-img-top">
             @else
                 <img src="https://source.unsplash.com/400x250/?dorm" class="img-preview img-fluid w-100 card-img-top">
@@ -34,6 +34,9 @@
                     </table>
                     <ul class="list-group list-group-flush fs-6">
                         <li class="list-group-item"><b>Alamat :</b> <br> {{ $kategori->alamat }}</li>
+                    </ul>
+                    <ul class="list-group list-group-flush fs-6">
+                        <li class="list-group-item"><b>Lokasi :</b> <br> {{ $kategori->lokasi_kategori }}</li>
                     </ul>
                 </div>
             </div>

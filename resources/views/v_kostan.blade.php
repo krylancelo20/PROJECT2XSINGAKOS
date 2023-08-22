@@ -8,7 +8,7 @@
                     <div class="col-lg-6">
                         <center>
                             @if ($kost->image)
-                                <img src="{{ asset('/storage/' . $kost->image) }}" alt="Foto Kost {{ $kost->name }}"
+                                <img src="/foto/{{$kost->image}}" alt="Foto Kost {{ $kost->name }}"
                                     class="img-preview img-fluid my-3 d-block" width="500">
                             @else
                                 <img src="https://source.unsplash.com/1200x300/?home" class="card-img-top" alt="...">
@@ -72,7 +72,7 @@
                                 <div class="col-lg-4 my-3 ">
                                     <center>
                                         @if ($kmr->image)
-                                            <img src="{{ asset('/storage/' . $kmr->image) }}"
+                                            <img src="/foto/{{$kmr->image}}"
                                                 alt="Foto Kamar {{ $kmr->name }}" class="img-preview img-fluid d-block">
                                         @else
                                             <img src="https://source.unsplash.com/1200x300/?home" class="card-img-top"

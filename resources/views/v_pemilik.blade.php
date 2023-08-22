@@ -7,7 +7,7 @@
                 <div class="col-md-4">
                     <div class="card" style="width: 25rem;">
                         <a href="/kostan/{{ $k->id }}">
-                            <img src="{{ asset('/storage/' . $k->image) }}" alt="Foto Kosan {{ $k->name }}"
+                            <img src="/foto/{{$k->image}}" alt="Foto Kosan {{ $k->name }}"
                                 class="img-preview img-fluid mb-3 d-block">
                         </a>
                         <div class="card-body">

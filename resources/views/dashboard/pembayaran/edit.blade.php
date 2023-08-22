@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col-lg-3">
             @if ($pembayaran->image)
-                <img src="{{ asset('/storage/' . $pembayaran->image) }}" alt="Foto Kamar {{ $pembayaran->tipe }}"
+                <img src="/foto/{{$pembayaran->image}}" alt="Foto Kamar {{ $pembayaran->tipe }}"
                     class="img-preview img-fluid w-100 card-img-top d-block">
             @else
                 <img class="img-preview img-fluid w-100 card-img-top">
@@ -32,7 +32,11 @@
                 @csrf
                 <table class="table table-bordered">
                     <tr>
-                        <th colspan="2" class="text-center fs-6">{{ $pembayaran->no_transfer }}</th>
+                        <th colspan="2" class="text-center fs-6">{{ "Informasi Pemesanan" }}</th>
+                    </tr>
+                    <tr>
+                        <th>Nomor Transaksi</th>
+                        <td>{{ $pembayaran->no_transfer }}</td>
                     </tr>
                     <tr>
                         <th>Jenis</th>

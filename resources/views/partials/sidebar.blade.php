@@ -44,7 +44,7 @@
                 </g>
             </svg>
         </span>
-        <span class="app-brand-text demo menu-text fw-bolder ms-2">Indekos</span>
+        <span class="app-brand-text demo menu-text fw-bolder ms-2">Singakos</span>
     </a>
 
     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -119,14 +119,6 @@
         <a href="/dashboard/pembayaran" class="menu-link">
             <i class="menu-icon tf-icons bx bx-credit-card"></i>
             <div data-i18n="Pembayaran">Pembayaran</div>
-        </a>
-    </li>
-
-    <!-- Extended components -->
-    <li class="menu-item {{ Request::is('dashboard/pelaporan*') ? 'active ' : '' }}">
-        <a href="/dashboard/pelaporan" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-receipt"></i>
-            <div data-i18n="Pelaporan">Pelaporan</div>
         </a>
     </li>
 

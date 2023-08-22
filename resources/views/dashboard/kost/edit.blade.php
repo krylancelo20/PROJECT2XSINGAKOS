@@ -144,7 +144,7 @@
                     <input type="hidden" name="oldImage" value="{{ $kost->image }}">
                     <center>
                         @if ($kost->image)
-                            <img src="{{ asset('/storage/' . $kost->image) }}" alt="Foto Profil {{ $kost->name }}"
+                            <img src="/foto/{{$kost->image}}" alt="Foto Profil {{ $kost->name }}"
                                 class="img-preview img-fluid w-75 my-3 d-block">
                         @else
                             <img class="img-preview img-fluid w-75 my-3">

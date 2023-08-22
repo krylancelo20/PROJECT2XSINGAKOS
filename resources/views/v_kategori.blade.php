@@ -7,7 +7,7 @@
                 <a href="/kost?kategori={{ $k->slug }}">
                     <div class="card text-white" style="width: 25rem;">
                         @if ($k->image)
-                            <img src="{{ asset('/storage/' . $k->image) }}" class="card-img-top" alt="...">
+                            <img src="/foto/{{$k->image}}" class="card-img-top" alt="...">
                             <div class="card-img-overlay d-flex align-items-center p-0">
                                 <h6 class="card-title text-center flex-fill p-3"
                                     style="background-color: rgba(0, 0, 0, 0.7)">

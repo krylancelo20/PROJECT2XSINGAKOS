@@ -25,6 +25,7 @@
                         <th scope="col" style="color: white">Username</th>
                         <th scope="col" style="color: white">Email</th>
                         <th scope="col" style="color: white">Status</th>
+                        <th scope="col" style="color: white">Status Akun</th>
                         <th scope="col" style="color: white">Aksi</th>
                     </tr>
                 </thead>
@@ -33,20 +34,29 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $user->name }}</td>
-                            <td>{{ $user->username }}</td>
+                            <td>{{ $user->username }}</td>  
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->status }}</td>
                             <td>
+                                @if($user->ban == '0')
+                                    <label class="py-2 px-3 badge btn-primary">Aktif</label>
+                                @elseif($user->ban == '1')
+                                <label class="py-2 px-3 badge btn-danger">Tidak Aktif</label>
+
+                                @endif
+                                {{-- {{ $user->ban}} --}}
+                            </td>
+                            <td>
                                 <a href="/dashboard/user/{{ $user->id }}" class="btn btn-success"><i
-                                        class="bx bx-info-circle"></i></a>
-                                <a href="/dashboard/user/{{ $user->id }}/edit" class="btn btn-warning"><i
-                                        class="bx bx-pencil"></i></a>
-                                <form action="/dashboard/user/{{ $user->id }}" method="post" class="d-inline">
-                                    @method('delete')
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Hapus Data?')"><i
-                                            class="bx bx-trash"></i></button>
-                                </form>
+                                    class="bx bx-info-circle"></i></a>
+                            <a href="/dashboard/user/{{ $user->id }}/edit" class="btn btn-warning"><i
+                                    class="bx bx-pencil"></i></a>
+                            {{-- <form action="/dashboard/user/{{ $user->id }}" method="post" class="d-inline">
+                                @method('delete')
+                                @csrf
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Hapus Data?')"><i
+                                        class="bx bx-trash"></i></button>
+                                </form> --}}
                             </td>
                         </tr>
                     @endforeach

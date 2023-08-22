@@ -19,7 +19,7 @@
         <div class="col-lg-4">
             <div class="card">
                 @if ($kamar->image)
-                    <img src="{{ asset('/storage/' . $kamar->image) }}" alt="Foto Kamar {{ $kamar->name }}"
+                    <img src="/foto/{{$kamar->image}}" alt="Foto Kamar {{ $kamar->name }}"
                         class="img-preview img-fluid w-100 d-block card-img-top">
                 @else
                     <img class="img-preview img-fluid w-100  card-img-top">

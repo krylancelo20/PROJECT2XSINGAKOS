@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kost;
 use App\Models\User;
 use App\Models\Kamar;
+use App\Models\Kategori;
 use App\Models\Pelaporan;
 use App\Models\Penyewaan;
 use App\Models\Pembayaran;
@@ -16,7 +17,7 @@ class C_Dashboard extends Controller
     public function index()
     {
         return view('dashboard.v_dashboard', [
-            'title' => 'Dashboard Indekos',
+            'title' => 'Dashboard Singakos',
             'pengajuan' => $this->pengajuan(),
             'pelaporan' => $this->pelaporan(),
             'penyewaan' => $this->penyewaan(),
@@ -24,6 +25,23 @@ class C_Dashboard extends Controller
             'user' => $this->user(),
             'kost' => Kost::where('status', 'disetujui')->count(),
             'kamar' => $this->kamar()
+        ]);
+
+    }
+
+    public function map()
+    {
+        /**
+         * $categorySpot dan $spots sama-sama memanggil tabel spot
+         * dengan chain method with ke getCategory agar relasi tersebut bisa digunakan
+         * pada file view welcome.blade
+         * 
+         * $categories akan digunakan pada header di file views/layouts/frontend
+         */
+        $kost = Kost::all();
+
+        return view('welcome', [
+            'kost' => $kost,
         ]);
     }
 
@@ -65,7 +83,7 @@ class C_Dashboard extends Controller
             'tolak' => $kost->where('status', 'ditolak')->count(),
             'tunggu' => $kost->where('status', 'menunggu')->count(),
             'jumlah' => Kost::count(),
-            'kamar' => $kamar
+            'kamar' => $kamar,
         ];
     }
 
@@ -219,17 +237,20 @@ class C_Dashboard extends Controller
 
     public function home()
     {
+        // dd(Kategori::all());
         return view('v_home', [
-            'title' => 'Indekos',
+            'title' => 'Singakos',
             'kost' => Kost::latest()->get(),
-            'kamar' => Kamar::all()
+            'kamar' => Kamar::all(),
+            'datakost' => Kost::where('status', 'disetujui')->get(),
+            'datakategori' => Kategori::all()
         ]);
     }
 
     public function about()
     {
         return view('v_tentang', [
-            'title' => 'Tentang Indekos'
+            'title' => 'Tentang Singakos'
         ]);
     }
 }

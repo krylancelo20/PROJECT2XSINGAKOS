@@ -64,7 +64,7 @@
                 </div>
                 <label for="nohp" class="form-label">No HP:</label> <br>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">+62</span>
+                    {{-- <span class="input-group-text" id="basic-addon1">+62</span> --}}
                     <input type="number" class="form-control @error('nohp') is-invalid @enderror" id="nohp" name="nohp"
                         required value="{{ old('nohp', $nohp) }}">
                     @error('nohp')
@@ -118,7 +118,7 @@
                     <label for="image" class="form-label">Foto Profil <small>(max: 16mb)</small></label>
                     <input type="hidden" name="oldImage" value="{{ $user->image }}">
                     @if ($user->image)
-                        <img src="{{ asset('/storage/' . $user->image) }}" alt="Foto Profil {{ $user->name }}"
+                        <img src="/foto/{{$user->image}}" alt="Foto Profil {{ $user->name }}"
                             class="img-preview img-fluid w-25 my-3 d-block">
                     @else
                         <img class="img-preview img-fluid w-25 my-3">

@@ -12,16 +12,16 @@
     @endif
     <div class="m-5">
         <div class="table-responsive text-center">
-            <table class="table table-striped table-sm">
-                <thead>
+            <table class="table table-bordered table-light">
+                <thead class="table-dark">
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Laporan</th>
-                        <th scope="col">Pelapor</th>
-                        <th scope="col">Kamar</th>
-                        <th scope="col">Keterangan</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Aksi</th>
+                        <th scope="col" style="color: white">#</th>
+                        <th scope="col" style="color: white">Laporan</th>
+                        <th scope="col" style="color: white">Pelapor</th>
+                        <th scope="col" style="color: white">Kamar</th>
+                        <th scope="col" style="color: white">Keterangan</th>
+                        <th scope="col" style="color: white">Status</th>
+                        <th scope="col" style="color: white">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>

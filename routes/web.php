@@ -12,6 +12,7 @@ use App\Http\Controllers\C_Pengajuan;
 use App\Http\Controllers\C_Penyewaan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\C_Pembayaran;
+use App\Http\Controllers\C_MapController;
 use App\Http\Controllers\C_Registrasi;
 
 /*
@@ -28,8 +29,8 @@ use App\Http\Controllers\C_Registrasi;
 Route::get('/', [C_Dashboard::class, 'home'])->name('home');
 Route::get('/kategori', [C_Kategori::class, 'kategori']);
 Route::get('/kost', [C_Kosan::class, 'index']);
-Route::get('/kostan/{slug}', [C_Kost::class, 'kosan']);
-Route::get('/tentang', [C_Dashboard::class, 'about']);
+Route::get('/kostan/{slug}', [C_Kost::class, 'kosan'])->name('kostan');
+Route::get('/tentang', [C_MapController::class, 'about']);
 Route::get('/login', [C_Login::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [C_Login::class, 'authenticate'])->middleware('guest');
 Route::post('/logout', [C_Login::class, 'logout'])->middleware('auth');
@@ -49,3 +50,8 @@ Route::get('/dashboard/penyewaan/create/{slug}', [C_Penyewaan::class, 'create'])
 Route::resource('/dashboard/penyewaan', C_Penyewaan::class)->middleware('auth');
 Route::get('/dashboard/pembayaran/create/{slug}', [C_Pembayaran::class, 'create'])->middleware('auth');
 Route::resource('/dashboard/pembayaran', C_Pembayaran::class)->middleware('auth');
+Route::group(['middleware' => ['auth','isUser']], function () {
+// Route::get('/', [C_Login::class, '/'])->name('home');
+});
+
+

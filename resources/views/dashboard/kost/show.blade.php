@@ -32,7 +32,7 @@
         <div class="col-lg-4">
             <div class="card">
                 @if ($kost->image)
-                    <img src="{{ asset('/storage/' . $kost->image) }}" alt="Foto Kost {{ $kost->name }}"
+                    <img src="/foto/{{$kost->image}}" alt="Foto Kost {{ $kost->name }}"
                         class="img-preview img-fluid w-100 d-block card-img-top">
                 @else
                     <img class="img-preview img-fluid w-100 card-img-top">
@@ -116,7 +116,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>
                                 <center>
-                                    <img src="{{ asset('/storage/' . $kmr->image) }}"
+                                    <img src="/foto/{{$kmr->image}}"
                                         alt="Foto Kost {{ $kost->nama }} Kamar {{ $kmr->tipe }}"
                                         class="img-preview img-fluid mb-3 d-block" width="125">
                                 </center>

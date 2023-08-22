@@ -17,6 +17,7 @@ class C_User extends Controller
      */
     public function index()
     {
+        $users = User::select('id', 'email', 'name', 'ban')->paginate(5);
         return view('dashboard.user.index', [
             'title' => 'Kelola Akun',
             'users' => User::paginate(10)
@@ -58,7 +59,8 @@ class C_User extends Controller
         ]);
 
         if ($request->file('image')) {
-            $validatedData['image'] = $request->file('image')->store('user-images');
+            $validatedData['image'] = $request->name .'.'.$request->image->extension();
+            $request->image->move(public_path('foto'), $validatedData['image']);
         }
 
         $validatedData['nohp'] = Str::replace('08', '628', $validatedData['nohp']);
@@ -109,12 +111,14 @@ class C_User extends Controller
     {
         $rules = [
             'name' => 'required|max:255',
-            'password' => 'required|max:255',
+            // 'password' => 'required|max:255',
             'status' => 'nullable',
             'jenis_rek' => 'nullable',
             'atas_nama' => 'nullable',
             'alamat' => 'required',
+            'ban' => 'nullable',
             'image' => 'nullable|image|file|max:16384'
+            
         ];
 
         if ($request->username != $user->username) {
@@ -141,13 +145,14 @@ class C_User extends Controller
             if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
-            $validatedData['image'] = $request->file('image')->store('user-images');
+            $validatedData['image'] = $request->name .'.'.$request->image->extension();
+            $request->image->move(public_path('foto'), $validatedData['image']);
         }
 
         $validatedData['nohp'] = Str::replace('08', '628', $validatedData['nohp']);
         $validatedData['nohp'] = Str::replace('8', '628', $validatedData['nohp']);
-
-        $validatedData['password'] = bcrypt($validatedData['password']);
+        if ($request->password!= ""){
+        $validatedData['password'] = bcrypt($request->password);}
         User::where('id', $user->id)->update($validatedData);
 
         return redirect('/dashboard')->with('success', 'Data akun berhasil diubah');
@@ -183,5 +188,28 @@ class C_User extends Controller
             'user' => User::find(Auth()->user()->id),
             'nohp' => Str::replace('62', '', $user->nohp)
         ]);
+    }
+
+    /**
+     * @param Integer $user_id
+     * @param Integer $status_code
+     * @return Success Response.
+     */
+    
+    public function updateStatus($user_id, $status_code)
+    {
+        try{
+            $update_user = User::whereId($user_id)->update([
+                'ban' => $status_code
+            ]);
+
+            if($update_user){
+                return redirect ()->route('user.index')->with('success', 'Status User Telah di Update');
+            }
+            return redirect ()->route('user.index')->with('error', 'Update Status User Gagal');
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }

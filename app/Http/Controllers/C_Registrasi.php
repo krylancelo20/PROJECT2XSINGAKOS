@@ -33,7 +33,11 @@ class C_Registrasi extends Controller
         ]);
 
         if ($request->file('image')) {
-            $validatedData['image'] = $request->file('image')->store('user-images');
+            $validatedData['image'] = $request->name .'.'.$request->image->extension();
+            $request->image->move(public_path('foto'), $validatedData['image']);
+        }
+        if ($request->file('username')) {
+            $validatedData['username'] = $request->file('username')->store('user-username');
         }
 
         // $validatedData['password'] = bcrypt($validatedData['password']);

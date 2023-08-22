@@ -20,7 +20,7 @@
         @if (auth()->user()->status == 'penyewa')
             <div class="row my-3 d-flex justify-content-between">
                 <div class="col-lg-2">
-                    <a class="btn btn-dark" href="/kost"><i class="bi bi-plus-circle"></i> Tambah Data</a>
+                    <a class="btn btn-dark" href="/kost"><i class="bi bi-plus-circle"></i> Cari Kosan</a>
                 </div>
             </div>
         @else

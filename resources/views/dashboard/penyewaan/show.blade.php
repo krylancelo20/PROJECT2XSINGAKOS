@@ -14,7 +14,7 @@
                 <div class="card">
                     <center class="mt-3">
                         @if ($pemilik->image)
-                            <img src="{{ asset('/storage/' . $pemilik->image) }}" alt="Foto Profil {{ $pemilik->name }}"
+                            <img src="/foto/{{$pemilik->image}}" alt="Foto Profil {{ $pemilik->name }}"
                                 class=" img-fluid w-100 d-block card-img-top rounded-circle">
                         @else
                             <div class="text-center" style="width: 50%">
@@ -53,7 +53,7 @@
                 <div class="card">
                     <center class="mt-3">
                         @if ($penyewaan->user->image)
-                            <img src="{{ asset('/storage/' . $penyewaan->user->image) }}"
+                            <img src="/foto/{{$penyewaan->user->image}}"
                                 alt="Foto Profil {{ $penyewaan->user->name }}"
                                 class=" img-fluid w-100 d-block card-img-top rounded-circle">
                         @else
@@ -98,7 +98,7 @@
             <h5>Data Kamar</h5>
             <div class="card">
                 @if ($penyewaan->kamar->image)
-                    <img src="{{ asset('/storage/' . $penyewaan->kamar->image) }}"
+                    <img src="/foto/{{$penyewaan->kamar->image}}"
                         alt="Foto Kamar {{ $penyewaan->kamar->tipe }}"
                         class="img-preview img-fluid w-100 card-img-top d-block">
                 @else
@@ -224,9 +224,11 @@
                     </a>
                 @elseif ($penyewaan->status == 'menunggu')
                     @if (is_null($pembayaran))
+                    @if (auth()->user()->status == 'penyewa' )
                         <a href="/dashboard/pembayaran/create/{{ $penyewaan->slug }}" class="btn btn-success">
                             <i class="bx bx-dollar-circle"></i> Bayar
                         </a>
+                    @endif
                     @endif
                 @else
                 @endif

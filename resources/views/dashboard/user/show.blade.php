@@ -6,12 +6,12 @@
             <div class="btn-group me-2">
                 <a href="/dashboard/user/{{ $user->id }}/edit" class="btn btn-warning "><i class="bi bi-pencil"></i>
                     Edit</a>
-                <form action="/dashboard/user/{{ $user->id }}" method="post" class="d-inline">
+                {{-- <form action="/dashboard/user/{{ $user->id }}" method="post" class="d-inline">
                     @method('delete')
                     @csrf
                     <button type="submit" class="btn btn-danger mx-1" onclick="return confirm('Hapus Data?')"><i
                             class="bi bi-trash"></i> Hapus</button>
-                </form>
+                </form>  --}}
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@
                 <div class="card">
                     <center class="mt-3">
                         @if ($user->image)
-                            <img src="{{ asset('/storage/' . $user->image) }}" alt="Foto Profil {{ $user->name }}"
+                            <img src="/foto/{{$user->image}}" alt="Foto Profil {{ $user->name }}"
                                 class=" img-fluid w-50 d-block card-img-top rounded-circle">
                         @else
                             <div class="text-center">

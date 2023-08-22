@@ -35,7 +35,7 @@
         <div class="col-lg-4">
             <div class="card">
                 @if ($kost->image)
-                    <img src="{{ asset('/storage/' . $kost->image) }}" alt="Foto Kost {{ $kost->name }}"
+                    <img src="/foto/{{$kost->image}}" alt="Foto Kost {{ $kost->name }}"
                         class="img-preview img-fluid w-100 d-block card-img-top">
                 @else
                     <img class="img-preview img-fluid w-100 card-img-top">
@@ -89,6 +89,7 @@
                             <li class="list-group-item"><b>Kategori :</b> <br> {{ $kost->kategori->nama }}</li>
                             <li class="list-group-item"><b>Deskripsi :</b> <br> {{ $kost->deskripsi }}</li>
                             <li class="list-group-item"><b>Alamat :</b> <br> {{ $kost->alamat }}</li>
+                            <li class="list-group-item"><b>Koordinat :</b> <br> {{ $kost->lokasi_toko }}</li>
                         </ul>
                     </div>
                 </div>
@@ -112,9 +113,7 @@
                         <th scope="col" style="color:white">Harga</th>
                         <th scope="col" style="color:white">Jumlah</th>
                         <th scope="col" style="color:white">Sisa</th>
-                        @if (auth()->user()->status == 'pemilik')
-                            <th scope="col">Aksi</th>
-                        @endif
+                        <th scope="col" style="color:white">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -123,7 +122,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>
                                 <center>
-                                    <img src="{{ asset('/storage/' . $kmr->image) }}"
+                                    <img src="/foto/{{$kmr->image}}"
                                         alt="Foto Kost {{ $kost->nama }} Kamar {{ $kmr->tipe }}"
                                         class="img-preview img-fluid mb-3 d-block" width="125">
                                 </center>
